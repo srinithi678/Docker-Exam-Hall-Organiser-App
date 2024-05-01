@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: examhalldeployment
+spec:
+  selector:
+    matchLabels:
+      app: examhall-front
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: examhall-front
+    spec:
+      containers:
+      - name: nginx
+        image: frontexamhall:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1 
+kind: Service 
+metadata:
+  name: examhall-webservice
+spec:
+  selector:
+    app: examhall-front
+  type: LoadBalancer
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80

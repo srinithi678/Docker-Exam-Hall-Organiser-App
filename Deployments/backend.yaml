@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: examhall-deployment
+  labels:
+    app: examhall
+spec:
+  selector:
+    matchLabels:
+      app: examhall
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: examhall
+    spec:
+      containers:
+      - name: hello
+        image: examhall:latest
+        imagePullPolicy: Never
+        ports:
+        - name: http
+          containerPort: 3000 
+---
+apiVersion: v1 
+kind: Service
+metadata:
+  name: examhall-service
+spec:
+  selector:
+    app: examhall
+  type: LoadBalancer
+  ports:
+  - protocol: TCP
+    port: 3000 		
+    targetPort: 3000
