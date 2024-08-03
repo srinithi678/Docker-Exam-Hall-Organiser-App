@@ -1,2 +1,4 @@
 # ExamHall-Organiser-App
-A web application for allocation of examination hall for the students based on the availability of the halls and deployed in a minikube k8s cluster
+A full-stack web application for managing and allocating examination halls based on availability. Deployed using Docker containers within a Minikube Kubernetes cluster for scalable and efficient management.
+
+
